@@ -493,3 +493,41 @@ section {
         flex-direction: column;
     }
 }
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Автоматично підлаштує колонки */
+    gap: 20px;
+}
+
+/* Стилізація карток архіву */
+.archive-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.archive-card p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-top: auto; /* Притискає текст до низу, якщо заголовки різної довжини */
+}
+
+.viber-hint {
+    font-size: 11px;
+    text-transform: uppercase;
+    margin-top: 15px;
+    display: block;
+    opacity: 0.6;
+}
+
+/* Відступ між архівом та футером */
+.archive-section {
+    padding-bottom: 100px; /* Великий відступ перед футером */
+}
+
+.workflow {
+padding-bottom: 100px; /* Великий відступ перед футером */
+}
