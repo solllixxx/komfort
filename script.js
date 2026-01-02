@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (isWindows) {
                     thanksMessage.innerHTML = "Ми відкрили <b>Gmail</b> у новій вкладці браузера.<br>Будь ласка, прикріпіть фото та натисніть 'Надіслати'.";
                 } else {
-                    thanksMessage.innerHTML = "Зараз відкриється ваша <b>поштова програма</b>.<br>Не забудьте натиснути на скріпку, щоб додати фото!";
+                    thanksMessage.innerHTML = "Зараз відкриється ваша <b>поштова програма</b>. Не забудьте натиснути на скріпку, щоб додати фото!";
                 }
             }
 
