@@ -121,7 +121,7 @@ function copyCard(number, bankName) {
 
         if (thanksModal) {
             thanksTitle.innerText = "Скопійовано!";
-            thanksMessage.innerHTML = `Номер картки <b>${bankName}</b> скопійовано.<br>Тепер ви можете вставити його в додатку банку.`;
+            thanksMessage.innerHTML = `Номер картки <b>${bankName}</b> скопійовано. Тепер ви можете вставити його в додатку банку.`;
             thanksModal.style.display = "block";
             document.body.style.overflow = "hidden";
         }
