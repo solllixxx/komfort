@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>KOMFORT | Фотостудія Онлайн</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <div class="logo">KOMFORT</div>
+            <ul class="nav-links">
+                <li><a href="#workflow">Процес</a></li>
+                <li><a href="#pricing">Ціни</a></li>
+                <li><button class="btn-outline open-modal">Замовити</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="reveal">Твій комфорт — <br>наша ретуш.</h1>
+            <p class="reveal">Професійна обробка фото. Результат впродовж 24 годин.</p>
+            <button class="btn-white open-modal reveal">Розпочати</button>
+        </div>
+    </section>
+
+    <section id="workflow" class="workflow container">
+        <div class="section-title reveal">
+            <h2>Як це працює</h2>
+        </div>
+        <div class="steps-grid">
+            <div class="step reveal">
+                <div class="step-num">01</div>
+                <h3>Завантаження</h3>
+                <p>Надсилаєте фото та обираєте: цифрове або друк.</p>
+            </div>
+<div class="step reveal">
+    <div class="step-num">02</div>
+    <h3>Оплата</h3>
+    <p>Надсилаєте скріншот квитанції у Viber: <a href="viber://chat?number=%2B380985763860" class="phone-link">098 576 38 60</a>.</p>
+</div>
+            <div class="step reveal">
+                <div class="step-num">03</div>
+                <h3>Результат</h3>
+                <p>Готове фото впродовж 24 годин. Залежно від складності.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Наші Тарифи</h2>
+            </div>
+            <div class="price-grid">
+                <div class="price-card reveal open-modal">
+                    <h3>Фото на документи</h3>
+                    <div class="cost">від 250₴</div>
+                    <p>Формати 3х4, 3.5х4.5 та інші. Базова ретуш включена.</p>
+                    <span class="price-link">Замовити</span>
+                </div>
+
+                <div class="price-card reveal open-modal">
+                    <h3>Військові / Форма</h3>
+                    <div class="cost">від 300₴</div>
+                    <p>Заміна форми, підстановка погонів, ретуш обличчя.</p>
+                    <span class="price-link">Замовити</span>
+                </div>
+
+                <div class="price-card reveal open-modal">
+                    <h3>Друк фотографій</h3>
+                    <div class="cost">від 7₴</div>
+                    <ul class="price-list">
+                        <li>10-50 шт — <strong>9 грн</strong></li>
+                        <li>50-100 шт — <strong>8 грн</strong></li>
+                        <li>100-200 шт — <strong>7 грн</strong></li>
+                    </ul>
+                    <span class="price-link">Замовити друк</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<footer>
+        <div class="container footer-grid">
+            <div class="footer-about">
+                <div class="logo">KOMFORT</div>
+                <p>Ваша персональна цифрова фотостудія.</p>
+            </div>
+            
+            <div class="footer-contacts">
+                <h4>Контакти</h4>
+                <p><a href="tel:+380985763860"><strong>098 576 38 60</strong></a></p>
+                <p><a href="mailto:order@komfort.ua">order@komfort.ua</a></p>
+            </div>
+
+            <div class="footer-location">
+                <h4>Адреса</h4>
+                <p>
+                    <a href="https://www.google.com/maps/place/%D0%A4%D0%BE%D1%82%D0%BE%D0%9A%D0%BE%D0%BC%D1%84%D0%BE%D1%80%D1%82/@50.083135,25.145338,17z/data=!3m1!4b1!4m6!3m5!1s0x472ff80838aee495:0xafb28c3f54391839!8m2!3d50.083135!4d25.145338!16s%2Fg%2F1ptx7_96m?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">
+                        📍 Дивитись на карті
+                    </a>
+                </p>
+                <p>Україна, м. Броди</p> </div>
+
+            <div class="footer-worktime">
+                <h4>Графік</h4>
+                <p>Пн-Пт: 09:00 — 17:00</p>
+                <p>Сб: 11:00 — 15:00</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Оформлення</h2>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label>Телефон</label>
+                    <input type="tel" id="userPhone" placeholder="067 000 00 00" required>
+                </div>
+                <div class="form-group">
+    <label>Прізвище</label>
+    <input type="text" id="userSurname" placeholder="Ваше прізвище" required>
+</div>
+                <div class="form-group">
+                    <label>Послуга</label>
+                    <select id="type" required>
+                        <option value="digital">Цифрове фото</option>
+                        <option value="documents">Документи (250 грн)</option>
+                        <option value="military">Військове (300 грн)</option>
+                        <option value="print">Друк (Самовивіз)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Формат</label>
+                    <select id="format">
+                        <option value="3x4">3х4 см</option>
+                        <option value="3.5x4.5">3,5х4,5 см</option>
+                        <option value="10x15">10х15 см</option>
+                        <option value="15x21">15х21 см</option>
+                        <option value="20x30">20х30 см</option>
+                    </select>
+                </div>
+<div class="form-group">
+    <label>Кількість</label>
+    <select id="quantity">
+        <option value="менше">Менше 4 шт</option> <option value="4">4 шт</option>
+        <option value="6">6 шт</option>
+        <option value="8">8 шт</option>
+        <option value="більше">Більше</option>
+    </select>
+</div>
+<div class="form-group">
+    <label>Додати фото</label>
+    <input type="file" id="photo" name="photo" accept="image/*" multiple>
+    <small style="color: #666; font-size: 12px;">Можна обрати декілька файлів</small>
+</div>
+                <div class="form-group">
+                    <label>Коментар</label>
+                    <textarea id="comment" rows="2"></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Надіслати на пошту</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
