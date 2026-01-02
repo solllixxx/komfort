@@ -21,13 +21,41 @@
         </nav>
     </header>
 
-    <section class="hero">
-        <div class="container">
+<section class="hero">
+    <div class="container hero-layout">
+        <div class="hero-text">
             <h1 class="reveal">Твій комфорт — <br>наша ретуш.</h1>
             <p class="reveal">Професійна обробка фото. Результат впродовж 24 годин.</p>
             <button class="btn-white open-modal reveal">Розпочати</button>
         </div>
-    </section>
+
+        <div class="bank-cards-sidebar reveal">
+            <div class="bank-item" onclick="copyCard('4141000000000000', 'Приват24')">
+                <div class="bank-info">
+                    <span class="bank-name">Приват24</span>
+                    <span class="card-num">4141 ••• 0000</span>
+                </div>
+                <span class="copy-icon">КОПІЮВАТИ</span>
+            </div>
+
+            <div class="bank-item" onclick="copyCard('4441000000000000', 'Monobank')">
+                <div class="bank-info">
+                    <span class="bank-name">Monobank</span>
+                    <span class="card-num">4441 ••• 0000</span>
+                </div>
+                <span class="copy-icon">КОПІЮВАТИ</span>
+            </div>
+
+            <div class="bank-item" onclick="copyCard('5167000000000000', 'Ощадбанк')">
+                <div class="bank-info">
+                    <span class="bank-name">Ощадбанк</span>
+                    <span class="card-num">5167 ••• 0000</span>
+                </div>
+                <span class="copy-icon">КОПІЮВАТИ</span>
+            </div>
+        </div>
+    </div>
+</section>
 
     <section id="workflow" class="workflow container">
         <div class="section-title reveal">

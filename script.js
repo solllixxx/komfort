@@ -112,3 +112,18 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 });
+
+function copyCard(number, bankName) {
+    navigator.clipboard.writeText(number).then(() => {
+        const thanksModal = document.getElementById("thanksModal");
+        const thanksTitle = document.getElementById("thanksTitle");
+        const thanksMessage = document.getElementById("thanksMessage");
+
+        if (thanksModal) {
+            thanksTitle.innerText = "Скопійовано!";
+            thanksMessage.innerHTML = `Номер картки <b>${bankName}</b> скопійовано.<br>Тепер ви можете вставити його в додатку банку.`;
+            thanksModal.style.display = "block";
+            document.body.style.overflow = "hidden";
+        }
+    });
+}
