@@ -391,3 +391,14 @@ section {
         height: 48px;
     }
 }
+
+.payment-step:hover {
+    background: #7360f2 !important; /* Фіолетовий колір Viber при наведенні */
+    color: white !important;
+    border-color: #7360f2 !important;
+}
+
+.payment-step:hover .step-num {
+    opacity: 0.8;
+    color: white;
+}
