@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const typeText = (type === 'digital') ? "Цифрове фото" : "Друк (Самовивіз)";
 
-            // Формування тексту листа
+            // Формування тексту листа (включаючи нові формати)
             const subjectText = `Замовлення: ${surname} | ${phone}`;
             const bodyText = `НОВЕ ЗАМОВЛЕННЯ\n` +
                 `---------------------------\n` +
