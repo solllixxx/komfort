@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById("orderModal");
+    const thanksModal = document.getElementById("thanksModal");
     const btns = document.querySelectorAll(".open-modal");
-    const closeBtn = document.querySelector(".close-modal");
+    const closeBtns = document.querySelectorAll(".close-modal, .close-thanks");
 
-    // Відкриття модального вікна
+    // Відкриття форми замовлення
     btns.forEach(btn => {
         btn.onclick = (e) => {
             e.preventDefault();
@@ -11,13 +12,20 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     });
 
-    // Закриття модального вікна
-    closeBtn.onclick = () => modal.style.display = "none";
+    // Закриття всіх модалок
+    closeBtns.forEach(btn => {
+        btn.onclick = () => {
+            modal.style.display = "none";
+            thanksModal.style.display = "none";
+        };
+    });
+
     window.onclick = (e) => { 
         if (e.target == modal) modal.style.display = "none"; 
+        if (e.target == thanksModal) thanksModal.style.display = "none";
     };
 
-    // Анімація появи елементів при скролі
+    // Анімація появи елементів
     const reveal = () => {
         document.querySelectorAll('.reveal').forEach(el => {
             if (el.getBoundingClientRect().top < window.innerHeight - 50) {
@@ -28,53 +36,43 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', reveal);
     reveal();
 
-    // Логіка збору даних та відкриття пошти
+    // Логіка відправки
     document.getElementById('orderForm').onsubmit = (e) => {
         e.preventDefault();
         
-        // Отримуємо значення з полів
         const phone = document.getElementById('userPhone').value;
-        const surname = document.getElementById('userSurname').value; // Нове поле
+        const surname = document.getElementById('userSurname').value;
         const type = document.getElementById('type').value;
         const format = document.getElementById('format').value;
         const quantity = document.getElementById('quantity').value;
         const comment = document.getElementById('comment').value;
         
-        // Перевірка наявності вибраних файлів
-        const fileInput = document.getElementById('userPhotos');
+        const fileInput = document.getElementById('photo'); // змінено id на photo як у вашому html
         const filesCount = fileInput ? fileInput.files.length : 0;
-        let fileStatus = filesCount > 0 
-            ? `Клієнт вибрав фото (${filesCount} шт.) — перевірте додатки.` 
-            : "Фото не було вибрано у формі.";
+        let fileStatus = filesCount > 0 ? `Вибрано фото: ${filesCount} шт.` : "Фото не вибрано.";
 
-        // Формуємо тему та тіло листа
         const subject = encodeURIComponent(`Замовлення: ${surname} | ${phone}`);
         const body = encodeURIComponent(
-            `НОВЕ ЗАМОВЛЕННЯ З САЙТУ\n` +
-            `---------------------------\n` +
-            `👤 Прізвище: ${surname}\n` +
-            `📞 Телефон: ${phone}\n` +
-            `🛠 Послуга: ${type}\n` +
-            `📐 Формат: ${format}\n` +
-            `🔢 Кількість: ${quantity}\n` +
-            `💬 Коментар: ${comment}\n` +
-            `---------------------------\n` +
-            `📂 Статус файлів: ${fileStatus}\n\n` +
-            `⚠️ ПОВІДОМЛЕННЯ ДЛЯ КЛІЄНТА:\n` +
-            `Будь ласка, натисніть на значок "Скріпка" у вашій пошті та прикріпіть фото перед відправкою.`
+            `Прізвище: ${surname}\nТелефон: ${phone}\nПослуга: ${type}\nФормат: ${format}\nКількість: ${quantity}\nКоментар: ${comment}\n\n${fileStatus}`
         );
         
-        // Відкриваємо поштовий клієнт
         window.location.href = `mailto:order@komfort.ua?subject=${subject}&body=${body}`;
         
-        // Закриваємо модалку
+        // Закриваємо форму
         modal.style.display = "none";
-        
-        // Підказка
+
+        // Налаштовуємо текст у модалці подяки
+        const thanksTitle = document.getElementById('thanksTitle');
+        const thanksMessage = document.getElementById('thanksMessage');
+
+        thanksTitle.innerText = `Дякуємо, ${surname}!`;
         if (filesCount > 0) {
-            alert(`Дякуємо, ${surname}! \n\nЗараз відкриється пошта. Будь ласка, прикріпіть ваші фото до листа.`);
+            thanksMessage.innerHTML = "Зараз відкриється ваша поштова програма.<br><strong>ВАЖЛИВО:</strong> Прикріпіть ваші фото до листа натиснувши на 'скріпку'.";
         } else {
-            alert("Дякуємо! Будь ласка, надішліть сформований лист.");
+            thanksMessage.innerText = "Будь ласка, надішліть сформований лист у вашій поштовій програмі.";
         }
+
+        // Показуємо модалку подяки
+        thanksModal.style.display = "block";
     };
 });
