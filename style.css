@@ -527,30 +527,3 @@ section {
 .workflow {
 padding-bottom: 100px; /* Великий відступ перед футером */
 }
-
-/* Робимо всі картки однаковими за висотою в одному рядку */
-.price-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%; /* Щоб картки були однієї висоти */
-    padding-bottom: 20px; /* Відступ знизу для естетики */
-}
-
-/* Цей селектор змушує список (або текст) розтягуватися, 
-   штовхаючи кнопку вниз */
-.price-card p, 
-.price-card .price-list {
-    flex-grow: 1;
-}
-
-/* Стиль для самої кнопки-посилання */
-.price-link {
-    display: block;
-    margin-top: auto; /* Це магічний рядок, який штовхає елемент до самого низу */
-    text-align: center;
-    padding: 10px;
-    background: #000; /* Або ваш колір */
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-}
