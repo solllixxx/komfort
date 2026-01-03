@@ -198,11 +198,28 @@
             <form id="orderForm">
                 <div class="form-group">
                     <label>Телефон</label>
-                    <input type="tel" id="userPhone" placeholder="067 000 00 00" required>
+<input 
+    type="tel" 
+    id="userPhone" 
+    name="phone" 
+    placeholder="067 000 00 00" 
+    pattern="[0-9]{10}" 
+    required
+    oninvalid="this.setCustomValidity('Будь ласка, введіть коректний номер (10 цифр, наприклад: 0671234567)')"
+    oninput="this.setCustomValidity('')">
                 </div>
                 <div class="form-group">
     <label>Прізвище</label>
-    <input type="text" id="userSurname" placeholder="Ваше прізвище" required>
+<input 
+    type="text" 
+    id="userSurname" 
+    name="surname" 
+    placeholder="Ваше прізвище" 
+    required 
+    minlength="2" 
+    pattern="^[^\d]+$"
+    oninvalid="this.setCustomValidity(this.value.length < 2 ? 'Прізвище не може містити менше 2 букв' : 'Прізвище не може містити цифри')" 
+    oninput="this.setCustomValidity('')">
 </div>
                 <div class="form-group">
                     <label>Послуга</label>
