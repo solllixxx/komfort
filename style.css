@@ -527,3 +527,73 @@ section {
 .workflow {
 padding-bottom: 100px; /* Великий відступ перед футером */
 }
+
+/* Додайте або оновіть ці стилі */
+.btn-white {
+    background: var(--white);
+    color: var(--bg);
+    padding: 20px 50px;
+    border: none;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase; /* Якщо хочете капсом, як у Розпочати */
+    font-size: 14px; /* Адаптуйте під ваш загальний стиль */
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-white:hover {
+    opacity: 0.9;
+    transform: translateY(-2px); /* Легкий ефект підйому */
+}
+
+/* Контейнер для кнопок, щоб на мобілках вони були одна під одною */
+@media (max-width: 600px) {
+    .hero-btns {
+        flex-direction: column;
+    }
+    .btn-white {
+        width: 100%; /* На весь екран на мобілці */
+    }
+}
+
+/* Специфічні стилі для інформаційної модалки */
+.info-modal-content {
+    max-width: 600px; /* Робимо її трохи ширшою за форму */
+    padding: 20px;
+}
+
+.info-image-container {
+    width: 100%;
+    border: 1px solid rgba(255,255,255,0.1);
+    overflow: hidden;
+}
+
+.info-image-container img {
+    transition: transform 0.3s ease;
+}
+
+/* Ефект при наведенні на карту */
+.info-image-container:hover img {
+    transform: scale(1.02);
+}
+
+/* Колір тексту всередині списку (опцій), щоб він був чорним або темним */
+.form-group select option {
+    background-color: #0a1120; /* Темний фон як у модалки */
+    color: white;              /* Білий текст */
+    padding: 10px;
+}
+
+/* Специфічне виправлення для системних випадаючих списків */
+select {
+    color: white !important;   /* Колір обраного тексту */
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Щоб при фокусі (кліку) текст не зникав */
+select:focus {
+    background: #0d1b2a !important;
+    color: white !important;
+}

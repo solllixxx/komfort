@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const typeText = (type === 'digital') ? "Цифрове фото" : "Друк (Самовивіз)";
 
-            // Формування тексту листа (включаючи нові формати)
+            // Формування тексту листа
             const subjectText = `Замовлення: ${surname} | ${phone}`;
             const bodyText = `НОВЕ ЗАМОВЛЕННЯ\n` +
                 `---------------------------\n` +
@@ -78,8 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const platform = navigator.platform.toLowerCase();
             const isWindows = platform.indexOf('win') !== -1;
 
-            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=order@komfort.ua&su=${subjectEncoded}&body=${bodyEncoded}`;
-            const mailtoUrl = `mailto:order@komfort.ua?subject=${subjectEncoded}&body=${bodyEncoded}`;
+            // --- ЗАМІНЕНО НА fotokomfort@gmail.com ---
+            const targetEmail = "fotokomfort@gmail.com";
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${targetEmail}&su=${subjectEncoded}&body=${bodyEncoded}`;
+            const mailtoUrl = `mailto:${targetEmail}?subject=${subjectEncoded}&body=${bodyEncoded}`;
 
             // Логіка переходу до пошти
             if (isWindows) {
@@ -106,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// --- 4. КОПІЮВАННЯ КАРТКИ (БЕЗ АВТОЗАКРИТТЯ) ---
+// --- 4. КОПІЮВАННЯ КАРТКИ ---
 function copyCard(number, bankName) {
     navigator.clipboard.writeText(number).then(() => {
         const thanksModal = document.getElementById("thanksModal");
@@ -123,3 +125,55 @@ function copyCard(number, bankName) {
         console.error('Не вдалося скопіювати:', err);
     });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const orderModal = document.getElementById("orderModal");
+    const infoModal = document.getElementById("infoModal");
+    const thanksModal = document.getElementById("thanksModal");
+
+    const orderBtns = document.querySelectorAll(".open-modal"); // Кнопки "Замовити"
+    const infoBtn = document.getElementById("infoBtn"); // Кнопка "Інформація"
+    
+    const closeBtns = document.querySelectorAll(".close-modal, .close-thanks");
+
+    // Відкриття модалки ЗАМОВЛЕННЯ
+    orderBtns.forEach(btn => {
+        btn.onclick = (e) => {
+            e.preventDefault();
+            orderModal.style.display = "block";
+            document.body.style.overflow = "hidden";
+        };
+    });
+
+    // Відкриття модалки ІНФОРМАЦІЇ
+    if (infoBtn) {
+        infoBtn.onclick = (e) => {
+            e.preventDefault();
+            infoModal.style.display = "block";
+            document.body.style.overflow = "hidden";
+        };
+    }
+
+    // Закриття ВСІХ модалок
+    closeBtns.forEach(btn => {
+        btn.onclick = () => {
+            orderModal.style.display = "none";
+            infoModal.style.display = "none";
+            thanksModal.style.display = "none";
+            document.body.style.overflow = "auto";
+        };
+    });
+
+    // Закриття при кліку на фон
+    window.addEventListener('click', (e) => {
+        if (e.target == orderModal || e.target == infoModal || e.target == thanksModal) {
+            orderModal.style.display = "none";
+            infoModal.style.display = "none";
+            thanksModal.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+    });
+
+    // ... далі ваш код анімацій та відправки форми ...
+});
+
