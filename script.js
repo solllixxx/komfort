@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // === НАЛАШТУВАННЯ ===
+    const myViberNumber = "380951234567"; // Вкажіть ваш номер у форматі 380XXXXXXXXX
+    // ===================
+
     const modal = document.getElementById("orderModal");
     const thanksModal = document.getElementById("thanksModal");
     const btns = document.querySelectorAll(".open-modal");
@@ -21,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     });
 
-    // Закриття при кліку на темний фон
     window.onclick = (e) => { 
         if (e.target == modal || e.target == thanksModal) {
             modal.style.display = "none";
@@ -41,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', reveal);
     reveal();
 
-    // --- 3. ВІДПРАВКА ФОРМИ ЗАМОВЛЕННЯ ---
+    // --- 3. ВІДПРАВКА ФОРМИ ЗАМОВЛЕННЯ (VIBER) ---
     const orderForm = document.getElementById('orderForm');
     if (orderForm) {
         orderForm.onsubmit = (e) => {
@@ -53,14 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const format = document.getElementById('format').value;
             const quantity = document.getElementById('quantity').value;
             const comment = document.getElementById('comment').value;
-            const fileInput = document.getElementById('photo');
-            const filesCount = fileInput ? fileInput.files.length : 0;
 
             const typeText = (type === 'digital') ? "Цифрове фото" : "Друк (Самовивіз)";
 
-            // Формування тексту листа (включаючи нові формати)
-            const subjectText = `Замовлення: ${surname} | ${phone}`;
-            const bodyText = `НОВЕ ЗАМОВЛЕННЯ\n` +
+            // Формування тексту для Viber
+            const message = `🚀 НОВЕ ЗАМОВЛЕННЯ\n` +
                 `---------------------------\n` +
                 `👤 Прізвище: ${surname}\n` +
                 `📞 Телефон: ${phone}\n` +
@@ -69,35 +69,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 `🔢 Кількість: ${quantity}\n` +
                 `💬 Коментар: ${comment}\n` +
                 `---------------------------\n` +
-                `📂 Фото у формі: ${filesCount} шт.\n\n` +
-                `⚠️ ВАЖЛИВО: Будь ласка, натисніть на значок "СКРІПКА" та додайте ваші фото до листа!`;
+                `📸 Будь ласка, прикріпіть фото до цього чату!`;
 
-            const subjectEncoded = encodeURIComponent(subjectText);
-            const bodyEncoded = encodeURIComponent(bodyText);
-
-            const platform = navigator.platform.toLowerCase();
-            const isWindows = platform.indexOf('win') !== -1;
-
-            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=order@komfort.ua&su=${subjectEncoded}&body=${bodyEncoded}`;
-            const mailtoUrl = `mailto:order@komfort.ua?subject=${subjectEncoded}&body=${bodyEncoded}`;
-
-            // Логіка переходу до пошти
-            if (isWindows) {
-                window.open(gmailUrl, '_blank');
-            } else {
-                window.location.href = mailtoUrl;
-            }
+            const messageEncoded = encodeURIComponent(message);
             
-            // Вікно подяки після відправки
+            // Створюємо посилання для Viber
+            // draft — вставляє текст у поле введення
+            const viberUrl = `viber://chat?number=%2B${myViberNumber}&draft=${messageEncoded}`;
+
+            // Відкриваємо Viber
+            window.location.href = viberUrl;
+            
+            // Вікно подяки після спроби відправки
             modal.style.display = "none";
             const thanksTitle = document.getElementById('thanksTitle');
             const thanksMessage = document.getElementById('thanksMessage');
 
             if (thanksTitle && thanksMessage) {
                 thanksTitle.innerText = `Дякуємо, ${surname}!`;
-                thanksMessage.innerHTML = isWindows 
-                    ? "Ми відкрили <b>Gmail</b> у новій вкладці. Будь ласка, додайте фото через скріпку та надішліть цей лист нам." 
-                    : "Зараз відкриється ваша <b>пошта</b>. Не забудьте натиснути на скріпку, щоб додати ваші фото!";
+                thanksMessage.innerHTML = "Ми відкриваємо <b>Viber</b>. <br><br>1. Натисніть кнопку 'Надіслати' у чаті. <br>2. <b>Обов'язково</b> додайте ваші фото через скріпку.";
             }
 
             thanksModal.style.display = "block";
@@ -106,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// --- 4. КОПІЮВАННЯ КАРТКИ (БЕЗ АВТОЗАКРИТТЯ) ---
+// --- 4. КОПІЮВАННЯ КАРТКИ ---
 function copyCard(number, bankName) {
     navigator.clipboard.writeText(number).then(() => {
         const thanksModal = document.getElementById("thanksModal");
