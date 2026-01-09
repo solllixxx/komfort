@@ -896,3 +896,56 @@ select:focus {
     border-radius: 0px;
     box-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
+
+/* Контейнер для позиціонування знижки відносно заголовка */
+.header-with-badge {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 40px;
+}
+
+/* Стиль напису зі знижкою */
+.sale-badge {
+    position: absolute;
+    top: -10px;    /* Зміщення вгору */
+    right: -130px; /* Зміщення праворуч */
+    background-color: #ff4757; /* Яскраво-червоний колір */
+    color: white;
+    padding: 8px 15px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 5px;
+    transform: rotate(15deg); /* Кут 35 градусів */
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+    pointer-events: none; /* Щоб не заважало клікам */
+    
+    /* Анімація */
+    animation: pulse-badge 2s infinite ease-in-out;
+}
+
+/* Анімація пульсації та легкого погойдування */
+@keyframes pulse-badge {
+    0% {
+        transform: rotate(15deg) scale(1);
+        background-color: #ff4757;
+    }
+    50% {
+        transform: rotate(12deg) scale(1.1); /* Трохи змінюємо кут і масштаб */
+        background-color: #ff6b81;
+    }
+    100% {
+        transform: rotate(15deg) scale(1);
+        background-color: #ff4757;
+    }
+}
+
+/* Адаптація для мобільних пристроїв */
+@media (max-width: 600px) {
+    .sale-badge {
+        right: -50px;
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+}
